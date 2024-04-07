@@ -35,8 +35,8 @@ def main():
     data = load_dataset("json", data_files="dataset.json")
     
     def preprocess_function(examples):
-        inputs = [ex["subdomain"] for ex in examples["translation"]]
-        targets = [ex["permutation"] for ex in examples["translation"]]
+        inputs = [ex["subdomain"] for ex in examples["translation"][0]]
+        targets = [ex["permutation"] for ex in examples["translation"][0]]
         model_inputs = tokenizer(
             inputs, text_target=targets, max_length=128, truncation=True
         )
