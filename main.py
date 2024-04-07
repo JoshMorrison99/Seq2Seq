@@ -32,11 +32,11 @@ def main():
 
     model = get_peft_model(model, config)
     
-    data = load_dataset("json", data_files="dataset.json")
+    data = load_dataset("json", data_files="dataset1.json", field='translation')
     
     def preprocess_function(examples):
-        inputs = [ex["subdomain"] for ex in examples["translation"][0]]
-        targets = [ex["permutation"] for ex in examples["translation"][0]]
+        inputs = [ex for ex in examples['subdomain']]
+        targets = [ex for ex in examples["permutation"]]
         model_inputs = tokenizer(
             inputs, text_target=targets, max_length=128, truncation=True
         )
